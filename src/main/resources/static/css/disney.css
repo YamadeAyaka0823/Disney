@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+hr{
+	width:50%;
+	background-color:#4169e1;
+	height:2px;
+}
+
+hr#topPage{
+	width:100%;
+	background-color:#4169e1;
+	height:2px;
+}
