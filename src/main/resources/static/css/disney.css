@@ -1,9 +1,15 @@
 @charset "UTF-8";
 
-hr{
+hr#blue{
 	width:50%;
 	background-color:#4169e1;
 	height:2px;
+}
+
+hr#blue2{
+    width:50%;
+	background-color:#4169e1;
+	height:0.5px;	
 }
 
 hr#topPage{
@@ -11,3 +17,33 @@ hr#topPage{
 	background-color:#4169e1;
 	height:2px;
 }
+
+hr#gray{
+	width:50%;
+	background-color:#c0c0c0;
+	height:0.5px;
+}
+
+#accordion {
+    width: 80%;
+    margin: 0 auto;
+        }
+
+.accordion-click, .accordion-content {
+    padding: 10px;
+        }
+
+.accordion-click {
+    background-color: #4060B8;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 15px;
+        }
+
+.accordion-content {
+    border: 1px solid #4060B8;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+        }

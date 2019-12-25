@@ -31,5 +31,19 @@ public class TodayParkController {
 		model.addAttribute("time", sb.toString());
 		return "today_park";
 	}
+	
+	@RequestMapping("/calendar")
+	public String calendar(Model model) throws IOException {
+		Document document = Jsoup.connect("https://www.tokyodisneyresort.jp/tdl/monthly/calendar.html").get();
+		Elements elements = document.getElementsByClass("calendarTable pc-block");
+//		Elements elements = document.getElementsByTag("table");
+		StringBuilder sb = new StringBuilder();
+		for(Element element : elements) {
+			sb.append(element.text());
+			sb.append(",");
+		}
+		model.addAttribute("calendar", elements.text());
+		return "today_park";
+	}
 
 }

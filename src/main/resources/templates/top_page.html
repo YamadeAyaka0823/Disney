@@ -75,7 +75,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 							<th>
 								<a th:href="@{/atraction/list}">
 									<img th:src="@{/img/atraction.jpg}"
-										class="img-responsive img-rounded" width="300" height="600">
+										class="img-responsive img-rounded" width="400" height="600">
 										<p class="lead">アトラクション</p>
 								</a>
 							</th>
@@ -83,8 +83,24 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 							<th>
 								<a th:href="@{/todayPark/waitTime}">
 									<img th:src="@{/img/today_park.jpg}"
-										class="img-responsive img-rounded" width="300" height="600">
+										class="img-responsive img-rounded" width="400" height="600">
 										<p class="lead">今日のパーク</p>
+								</a>
+							</th>
+							
+							<th>
+								<a th:href="@{/ticket/list}">
+									<img th:src="@{/img/ticket.jpg}"
+										class="img-responsive img-rounded" width="400" height="600">
+										<p class="lead">パークチケット</p>
+								</a>
+							</th>
+							
+							<th>
+								<a th:href="@{/management/calendar}">
+									<img th:src="@{/img/calendar.jpg}"
+										class="img-responsive img-rounded" width="400" height="600">
+										<p class="lead">運営情報</p>
 								</a>
 							</th>
 						</tr>

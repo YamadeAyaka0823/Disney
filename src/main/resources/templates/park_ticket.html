@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DisneySite</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+<link th:href="@{/css/piza.css}" rel="stylesheet">
+<link th:href="@{/css/disney.css}" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script th:src="@{/js/acordion.js}"></script>
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar bg-info text-white">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="item_list.html"> <!-- 企業ロゴ --> <img
+						alt="main log" th:src="@{/img/disneyLogo.png}" height="50">
+					</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<p class="navbar-text navbar-right">
+						<a href="cart_list.html" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a href="order_history.html" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
+						<a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;
+						<a href="item_list.html" class="navbar-link">ログアウト</a>
+					</p>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+
+	</div>
+	
+	<h1 class="text-center" style="color:#4169e1">パークチケット</h1><br>
+	
+	<div class="text-center">
+	
+	<p>大人：18才以上 / 中人(中学・高校生)：12～17才 / 小人(幼児・小学生)：4～11才 / シニア：65才以上</p>
+	<p>※3才以下は無料</p>
+	<hr id="blue2">
+	<br>
+	
+	<h2 class="text-center" style="color:#4169e1">1日だけ来園</h2><br>
+	<hr id="blue">
+	
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(0)}">
+	        <div id="accordion">
+	        <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	        </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	        </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br>
+	<hr id="blue">
+    <div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(1)}">
+	   <div id="accordion">
+	   <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	   </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	   </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">65才以上</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.senior, 2, 'COMMA')}"></span>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(2)}">
+	   <div id="accordion">
+	   <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	   </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br><br><br>
+	<hr id="blue2"><br>
+	<h2 class="text-center" style="color:#4169e1">夕方から来園</h2><br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(3)}">
+	    <div id="accordion">
+	    <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	    </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(4)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br><br><br>
+	<hr id="blue2"><br>
+	<h2 class="text-center" style="color:#4169e1">期間限定</h2><br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(5)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<p>実施期間： 2020年1月6日(月)～3月19日(木)</p><br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(6)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<p>対象期間： 2019年4月1日(月)～2020年3月31日(火)</p><br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br><br><br>
+	<hr id="blue2"><br>
+	<h2 class="text-center" style="color:#4169e1">複数日続けて来園<br>(マルチデーパスポート)</h2><br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(7)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(8)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(9)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br><br><br>
+	<hr id="blue2"><br>
+	<h2 class="text-center" style="color:#4169e1">年間パスポート</h2><br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(10)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(11)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	<br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(12)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	</div><br><br><br>
+	
+	<div class="col-xs-4 col-xs-offset-3">
+	<span>※「小人」料金は小学校卒業年度(小学6年生)の3月31日までに作成いただいた場合適用されます。中学校入学年度の4月1日以降に</span><br>
+	<span>作成いただいた場合、「大人・中人」料金の適用となります。</span><br>
+	<span>※料金は作成いただいた時点の年齢が適用されますので、引換券ご購入時はご注意ください。</span><br>
+	<span>※現在65才未満で、シニアの年間パスポートをお持ちで、パスポートを更新される方は、有効期限内の更新に限り、65才になるまで</span><br>
+	<span>シニア区分を適用し、更新いただけます。</span><br>
+	<span>※作成する際は、本人確認のため、氏名と生年月日が記載されている公的機関発行の本人確認書類(運転免許証、健康保険証、住民票、</span><br>
+	<span>旅券、年金手帳等)をご提示いただきます(学生証を除く)。本人確認書類をご提示いただけない場合は作成することができません。</span><br>
+	<span>※20才未満の方が年間パスポートを作成する場合は、保護者の同意が必要です。</span><br>
+	<br><br><br>
+	</div>
+	
+	<hr id="blue2"><br>
+	<h2 class="text-center" style="color:#4169e1">25名様以上で来園</h2><br>
+	<hr id="blue">
+	<div class="row">
+	<div class="text-center">
+	
+	<div th:each="ticket:${ticketList.get(13)}">
+	     <div id="acordion">
+	     <div class="accordion_click">
+	        <h3 th:text="${ticket.name}" style="color:#4169e1" class="acordion"></h3><br>
+	        <p th:text="${ticket.comment}"></p><br>
+	     </div>
+	        <div class="accordion_content">
+	        <span th:text="${ticket.description}"></span>
+	        </div>
+	     </div>
+	<hr id="gray">
+	<br>
+	<div class="col-xs-2 col-xs-offset-3">
+	        <p style="color:#4169e1">大人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.adult, 2, 'COMMA')}"></span>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">中人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.middle, 2, 'COMMA')}"></span><br>
+	</div>
+	<div class="col-xs-2">
+	        <p style="color:#4169e1">小人</p>
+	        ￥<span th:text="${#numbers.formatInteger(ticket.child, 2, 'COMMA')}"></span><br>
+	</div>
+	</div>
+	</div>
+	</div>
+	<br><br><br>
+	</div>
+	
+	
+
+	
+	<!-- end container -->
+	<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
